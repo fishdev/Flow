@@ -1,0 +1,27 @@
+/* Background image for landing screen */
+#water {
+	/* The image used */
+	background-image: linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url("/images/stock.jpg");
+
+	/* Full height */
+	height: 100%;
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#water .hero-body {
+	color: white;
+	font-weight: bolder;
+}
+
+#water .hero-body img {
+	width: 15rem;
+}
+
+#main-subtitle {
+	color: white;
+	font-weight: bold;
+}

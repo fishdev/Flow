@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Flow! Revolutionizing water consumption</title>
+
+	<!-- Bulma -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+	<!-- My CSS -->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+	<section class="hero is-dark is-fullheight has-background-image" id="water">
+		<!-- Navbar -->
+		<div class="hero-head">
+			<nav class="navbar" role="navigation" aria-label="main navigation">
+				<div class="container">
+					<div class="navbar-brand">
+						<a class="navbar-item" href="#">
+							<img src="/images/logo.png" alt="Logo" title="Flow: Revolutionizing water consumption" width="70" height="28">
+						</a>
+					</div>
+					<div class="navbar-menu">
+						<div class="navbar-end">
+							<a class="navbar-item scroll-section" onclick="scrollToSection('why')">Why?</a>
+							<a class="navbar-item scroll-section" onclick="scrollToSection('about')">About</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<!-- Main background image -->
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<h1 id="main-title" class="title is-1">
+					<center>
+						<figure class="image">
+						  <img src="/images/logo-white.png">
+						</figure>
+				</center>
+				</h1>
+				<h3 id="main-subtitle" class="subtitle is-3">
+					Track water from your fingertips
+				</h3>
+				{{#if logged_in}}
+					<a class="button is-outlined is-white is-rounded is-medium" href="/login/dashboard">
+						<strong>Go to dashboard</strong>
+					</a>
+				{{else}}
+					<a class="button is-outlined is-white is-rounded is-medium" onclick="showModal('signUp', true)">
+						<strong>Sign up or log in</strong>
+					</a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="hero-foot">
+
+		</div>
+	</section>
+
+	<section id="why" class="section">
+		<div class="container has-text-centered">
+			<h3 class="title">
+				Why use Flow?
+			</h3>
+			<div class="columns">
+				<div class="column">
+					<span class="icon is-large has-text-success">
+						<i class="fas fa-clock fa-2x"></i>
+					</span>
+					<p class="subtitle is-5">
+						Track your consumption over time and set smart limits.
+					</p>
+				</div>
+				<div class="column">
+					<span class="icon is-large has-text-info">
+						<i class="fas fa-tint fa-2x"></i>
+					</span>
+					<p class="subtitle is-5">
+						Be notified of leaks before they damage your home.
+					</p>
+				</div>
+				<div class="column">
+					<span class="icon is-large has-text-danger">
+						<i class="fas fa-chart-pie fa-2x"></i>
+					</span>
+					<p class="subtitle is-5">
+						Compare your devices' usage to save on water bills.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+	<section id="about" class="section">
+		<div class="container has-text-centered">
+			<div class="columns">
+				<div class="column is-offset-2-tablet is-8-tablet">
+					<h3 class="title">How It Works</h3>
+					<p class="subtitle">Water flow is in itself a natural force. FLOW converts this force into measurable electricity and into consumption data, so you can track usage. Our IoT toolkit provides info on what devices are using the most water, tracks leaks, and predicts trends over time accessible in our apps or website.</p><br>
+				</div>
+			</div>
+		</div>
+		<div class="container has-text-centered">
+			<div class="columns">
+				<div class="column is-offset-2-tablet is-8-tablet">
+					<h3 class="title">Why It's Important</h3>
+					<p class="subtitle">FLOW exists with you and with communities in third-world countries, allowing everyone to easily understand water consumption. Track what happens within the infrastructure of your own home, instead of having to manually track a water meter. Our self-sufficient renewable electricity generation allows the device to be used anywhere, with no external energy source required. Just install, setup, and use. It’s really that simple.</p><br>
+				</div>
+			</div>
+		</div>
+		<div class="container has-text-centered">
+			<div class="columns">
+				<div class="column is-offset-2-tablet is-8-tablet">
+					<h3 class="title">Our Prediction Model</h3>
+					<p class="subtitle">We use machine learning methods to take input and usage data and convert to projections on a day-to-day basis, so you know when and where you can make changes to increase your efficiency and limit waste. Set goals and consider options to meet these goals based on your previous trends.</p><br>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="footer has-text-centered">
+	  <div class="container">
+      <p>
+        <strong class="has-text-weight-semibold">
+          Copyright &copy; 2018 Deepayan Patra, Akshath Jain, Soumil Mukherjee, Ashwin Srinivasan.
+        </strong>
+      </p>
+      <p>
+        <small>
+          Made with <a href="https://bulma.io">Bulma</a>, <a href="https://nodejs.org/en/">Node.js</a>, <a href="https://expressjs.com">Express</a>, and <a href="https://redis.io">Redis</a>. Source code licensed under <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+        </small>
+      </p>
+	  </div>
+	</footer>
+
+	<!-- Log In Popup Form -->
+	<div class="modal" id="logIn">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Log In</p>
+				<button class="delete" aria-label="close" onclick="showModal('logIn', false)"></button>
+			</header>
+			<section class="modal-card-body">
+				<!-- Username -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input id="logInUsername" name="username" class="input" type="text" placeholder="Username" onkeyup="logInEnter(event)" required>
+						<span class="icon is-small is-left">
+							<i class="fas fa-user"></i>
+						</span>
+					</div>
+				</div>
+				<!-- Password -->
+				<div class="field">
+					<div class="control has-icons-left has-icons-right">
+						<input id="logInPassword" name="password" class="input" type="password" placeholder="Password" onkeyup="betterPassword(); logInEnter(event)" required>
+						<span class="icon is-small is-left">
+							<i class="fas fa-unlock"></i>
+						</span>
+					</div>
+				</div>
+				<p id="badPassword" class="help is-danger is-hidden">Wrong username or password!</p>
+			</section>
+			<footer class="modal-card-foot">
+				<button class="button is-success" onclick="logIn();">Log In!</button>
+				Need an account? &nbsp;
+				<a onclick="showModal('logIn', false); showModal('signUp', true)">
+					Sign Up
+				</a>
+			</footer>
+		</div>
+	</div>
+
+	<!-- Sign Up Popup Form -->
+	<div class="modal" id="signUp">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Sign Up</p>
+				<button class="delete" aria-label="close" onclick="showModal('signUp', false)"></button>
+			</header>
+			<section class="modal-card-body">
+				<form id="signUpForm" method="POST">
+					<!-- Username -->
+					<div class="field">
+						<div class="control has-icons-left has-icons-right">
+							<input id="signUpUsername" class="input" type="text" placeholder="Username" onkeyup="checkUName(this.value); signUpEnter(event)" required>
+							<span class="icon is-small is-left">
+								<i class="fas fa-user"></i>
+							</span>
+						</div>
+						<p class="help is-danger is-hidden" id="usernameTaken">This username is taken.</p>
+					</div>
+					<!-- Email -->
+					<div class="field">
+						<div class="control has-icons-left has-icons-right">
+							<input id="signUpEmail" class="input" type="email" placeholder="Email" onkeyup="signUpEnter(event)" required>
+							<span class="icon is-small is-left">
+								<i class="fas fa-envelope"></i>
+							</span>
+						</div>
+					</div>
+					<!-- Password -->
+					<div class="field">
+						<div class="control has-icons-left has-icons-right">
+							<input id="signUpPassword" class="input" type="password" placeholder="Password" onkeyup="signUpEnter(event)" required>
+							<span class="icon is-small is-left">
+								<i class="fas fa-unlock"></i>
+							</span>
+							<span class="icon is-small is-right">
+								<i id="PWVisible" class="fas fa-eye-slash"></i>
+							</span>
+						</div>
+					</div>
+					<div class="field" onchange="togglePWVisibility()">
+						<label class="checkbox">
+							<input id="showPassword" type="checkbox" value="0">
+							Show password
+						</label>
+					</div>
+					<p id="signUpError" class="help is-danger is-hidden"></p>
+				</form>
+			</section>
+			<footer class="modal-card-foot">
+				<button class="button is-success" onclick="signUp()">Sign Up!</button>
+				Have an account? &nbsp;
+				<a onclick="showModal('signUp', false); showModal('logIn', true)">
+					Log In
+				</a>
+			</footer>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script type="text/javascript" src="/javascript/sha512.js"></script>
+	<script type="text/javascript" src="/javascript/main.js"></script>
+</body>
+</html>
